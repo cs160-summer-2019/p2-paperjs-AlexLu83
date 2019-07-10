@@ -57,8 +57,23 @@
 
 			// your rectangle gradient interaction goes in this function
 			// you may also add code outside of the function (e.g., global variables)
+      
+      
 			function myGradientInteraction(){
 				var tool = new paper.Tool();
+        
+        //var rect = new paper.Rectangle();
+        //console.log(rect); // { x: 0, y: 0, width: 0, height: 0 }
+      // Now we can for example define its size...
+        var rect = new paper.Rectangle(new paper.Point(250, 300),
+		    new paper.Point(470,420));
+        var path = new paper.Path.Rectangle(rect);
+        path.fillColor = 'red';
+        path.selected = true;
+       //rect.size = new paper.Size(100, 200);
+      // and its center
+      // rect.center = new paper.Point(100, 100);
+        //console.log(rect);
 
 				tool.onMouseDown = function (event) {
 
