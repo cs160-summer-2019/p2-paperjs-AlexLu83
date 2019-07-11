@@ -60,27 +60,42 @@
       
       
 			function myGradientInteraction(){
+ 
 				var tool = new paper.Tool();
-        
-        //var rect = new paper.Rectangle();
-        //console.log(rect); // { x: 0, y: 0, width: 0, height: 0 }
-      // Now we can for example define its size...
-        var rect = new paper.Rectangle(new paper.Point(250, 300),
-		    new paper.Point(470,420));
-        var path = new paper.Path.Rectangle(rect);
-        path.fillColor = 'red';
-        path.selected = true;
-       //rect.size = new paper.Size(100, 200);
-      // and its center
-      // rect.center = new paper.Point(100, 100);
-        //console.log(rect);
 
+//         var rect = new paper.Rectangle(new paper.Point(250, 300),
+// 		    new paper.Point(470,420));
+//         var path = new paper.Path.Rectangle(rect)
+//         path.selected = true;
+        var topLeft = new paper.Point(250, 300);
+        var bottomRight = new paper.Point(470,420);
+//         var topLeft = paper.view.center - [80, 80];
+//         var bottomRight = paper.view.center + [80, 80];
+
+        var path = new paper.Path.Rectangle({
+          topLeft: topLeft,
+          bottomRight: bottomRight,
+    // Fill the path with a gradient of three color stops
+    // that runs between the two points we defined earlier:
+          fillColor: {
+              gradient: {
+                 stops: ['yellow', 'red', 'blue']
+               },
+        origin: topLeft,
+        destination: bottomRight
+    }
+});
+        var path2;
 				tool.onMouseDown = function (event) {
+          path2 = new paper.Path();
+	        path2.strokeColor = 'black';
+	// Add the mouse down position:
+	        path2.add(event.point);
 
 				}
 
 				tool.onMouseUp = function (event) {
-					
+					path2.add(event.point);
 				}
 			}
 
